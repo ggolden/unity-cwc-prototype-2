@@ -10,9 +10,10 @@ public class PlayerController : MonoBehaviour
     // the player's collider will stay within the left and right (x) bounds of the boundary
     public GameObject boundary;
 
-    private float nRange, pRange;
+    private float nRange = -10.0f;
+    private float pRange = 10.0f;
 
-    void Start()
+    private void init()
     {
         var renderer = boundary.GetComponent<MeshRenderer>();
         var xRange = renderer.bounds.size.x / 2;
@@ -23,8 +24,10 @@ public class PlayerController : MonoBehaviour
         nRange = -xRange + halfWidth;
         pRange = xRange - halfWidth;
 
-        Debug.Log(name + " - collider: " + collider.bounds.size);
-        Debug.Log(boundary.name + " - renderer: " + renderer.bounds.size);
+        // TODO: currently only uses the x bounds, not the position - center might help
+
+        Debug.Log(name + " - collider: " + collider.bounds.size + " - center: " + collider.bounds.center);
+        Debug.Log(boundary.name + " - renderer: " + renderer.bounds.size + " - center: " + renderer.bounds.center);
         Debug.Log("nRange: " + nRange + " - pRange: " + pRange);
     }
 
@@ -44,6 +47,11 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(pRange, transform.position.y, transform.position.z);
         }
+    }
+
+    void Start()
+    {
+        // init();
     }
 
     void Update()
