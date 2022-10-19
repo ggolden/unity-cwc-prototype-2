@@ -6,9 +6,13 @@ public class DetectCollisions : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        // Debug.Log(gameObject.name + " - collided with: " + other.name);
+        //Debug.Log(gameObject.name + " - collided with: " + other.name);
 
-        Destroy(gameObject);
-        Destroy(other.gameObject);
+        // don't collide with another object of the same type, to support food rapid fire
+        if (!other.gameObject.name.Equals(gameObject.name))
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }

@@ -59,6 +59,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void RapidFireFoodOnS()
+    {
+        if (Input.GetKey(KeyCode.S))
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
+    }
+
     //void Start()
     //{
     //    Init();
@@ -69,5 +77,6 @@ public class PlayerController : MonoBehaviour
         PositionFromControls();
         ConstrainToBounds();
         FireFoodOnSpace();
+        RapidFireFoodOnS();
     }
 }
