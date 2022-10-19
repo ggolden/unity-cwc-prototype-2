@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private float nRange = -20.0f;
     private float pRange = 20.0f;
 
-    private void init()
+    private void Init()
     {
         var renderer = boundary.GetComponent<MeshRenderer>();
         var xRange = renderer.bounds.size.x / 2;
@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        // init();
-    }
+    //void Start()
+    //{
+    //    Init();
+    //}
 
     void Update()
     {
