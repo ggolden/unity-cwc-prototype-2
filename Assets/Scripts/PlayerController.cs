@@ -10,8 +10,10 @@ public class PlayerController : MonoBehaviour
     // the player's collider will stay within the left and right (x) bounds of the boundary
     public GameObject boundary;
 
-    private float nRange = -10.0f;
-    private float pRange = 10.0f;
+    public GameObject projectilePrefab;
+
+    private float nRange = -20.0f;
+    private float pRange = 20.0f;
 
     private void init()
     {
@@ -31,13 +33,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log("nRange: " + nRange + " - pRange: " + pRange);
     }
 
-    private void positionFromControls()
+    private void PositionFromControls()
     {
         var horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(horizontalInput * speed * Time.deltaTime * Vector3.right);
     }
 
-    private void constrainToBounds()
+    private void ConstrainToBounds()
     {
         if (transform.position.x < nRange)
         {
@@ -49,6 +51,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void FireFoodOnSpace()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
+    }
+
     void Start()
     {
         // init();
@@ -56,7 +66,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        positionFromControls();
-        constrainToBounds();
+        PositionFromControls();
+        ConstrainToBounds();
+        FireFoodOnSpace();
     }
 }
